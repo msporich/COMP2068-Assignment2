@@ -9,6 +9,21 @@ var usersRouter = require('./routes/users');
 
 var app = express();
 
+//Connection to Database
+const mongoose = require('mongoose');
+mongoose.connect('mongodb+srv://mark-sporich:toAccessData201@clusterclassifiedads.ui06c.mongodb.net/classified-ads',
+    {
+        useNewUrlParser: true,
+        useUnifiedTopology: true
+    }).then(
+        (res) =>
+        {
+            console.log('Connection to MongoDB')
+        }).catch(() =>
+        {
+            console.log('Connection Error!')
+        })
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
