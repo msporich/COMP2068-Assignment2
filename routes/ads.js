@@ -13,8 +13,8 @@ function isLoggedIn(req, res, next) {
     res.redirect('/login');
 }
 
-/* GET List Page */
-router.get('/', isLoggedIn, function (req, res, next) {
+/* GET User Only List Page */
+router.get('/', function (req, res, next) {
 
     Ad.find((err, ads) => {
         if (err) {
@@ -23,6 +23,24 @@ router.get('/', isLoggedIn, function (req, res, next) {
         }
         else {
             res.render('ads/index', {
+                ads: ads,
+                user: req.user
+            });
+        }
+    })
+
+});
+
+/* GET Public Read Only List Page */
+router.get('/private-index', isLoggedIn, function (req, res, next) {
+
+    Ad.find((err, ads) => {
+        if (err) {
+            console.log(err);
+            res.end(err);
+        }
+        else {
+            res.render('ads/private-index', {
                 ads: ads,
                 user: req.user
             });
@@ -48,7 +66,7 @@ router.post('/create', isLoggedIn, function (req, res, next) {
             res.end(err);
         }
         else {
-            res.redirect('/ads')
+            res.redirect('/ads/private-index')
         }
     }
     )
@@ -63,7 +81,7 @@ router.get('/delete/:_id', isLoggedIn, function (req, res, next) {
             res.end(err);
         }
         else {
-            res.redirect('/ads')
+            res.redirect('/ads/private-index')
         }
     })
 })
@@ -100,7 +118,7 @@ router.post('/edit/:_id', isLoggedIn, (req, res, next) => {
             res.end(err);
         }
         else {
-            res.redirect('/ads')
+            res.redirect('/ads/private-index')
         }
     })
 })

@@ -4,14 +4,10 @@ block content
 
     h1 Classified Ads - Listings
 
-    a(href="/ads/create") Create a New Classified Ad
+    a(href="/ads/private-index") Are you a user? View the modifiable listings here!
 
     each ad in ads
         ul.adsList
             li= ad.title
             li= ad.description
             li= ad.price
-            li
-                a.confirmDelete(href="/ads/delete/" + ad._id) Delete Ad
-            li
-                a(href="/ads/edit/" + ad._id) Edit Ad

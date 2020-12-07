@@ -1,0 +1,17 @@
+extends ../layout
+
+block content
+
+    h1 Classified Ads - Listings
+
+    a(href="/ads/create") Create a New Classified Ad
+
+    each ad in ads
+        ul.adsList
+            li= ad.title
+            li= ad.description
+            li= ad.price
+            li
+                a.confirmDelete(href="/ads/delete/" + ad._id) Delete Ad
+            li
+                a(href="/ads/edit/" + ad._id) Edit Ad
