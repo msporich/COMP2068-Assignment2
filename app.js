@@ -6,12 +6,13 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var adsRouter = require('./routes/ads');
 
 var app = express();
 
 //Connection to Database
-const mongoose = require('mongoose');
-mongoose.connect('mongodb+srv://mark-sporich:toAccessData201@clusterclassifiedads.ui06c.mongodb.net/classified-ads',
+const mongoose = require('mongoose')
+mongoose.connect('mongodb+srv://mark-sporich:ThisIsPasscode@ClusterClassifiedAds.ui06c.mongodb.net/classified-ads',
     {
         useNewUrlParser: true,
         useUnifiedTopology: true
@@ -36,6 +37,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/ads', adsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

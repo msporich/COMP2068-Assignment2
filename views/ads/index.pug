@@ -1,0 +1,9 @@
+extends ../layout
+
+block content
+
+    h1 Classified Ads - Listings
+
+    each ad in ads
+        ul
+            li= ad.title
