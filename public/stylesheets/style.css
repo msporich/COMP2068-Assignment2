@@ -86,6 +86,10 @@ p {
     transition: 0.3s;
 }
 
+#headerUsername {
+    color: #5825c6;
+}
+
 .navbar-item > a:hover {
     color: #000000;
 }

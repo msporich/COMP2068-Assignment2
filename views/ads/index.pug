@@ -12,6 +12,6 @@ block content
             li= ad.description
             li= ad.price
             li
-                a(href="/ads/delete/" + ad._id) Delete Ad
+                a.confirmDelete(href="/ads/delete/" + ad._id) Delete Ad
             li
                 a(href="/ads/edit/" + ad._id) Edit Ad

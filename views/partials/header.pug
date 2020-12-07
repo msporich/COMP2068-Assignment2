@@ -9,7 +9,15 @@ block header
         a(href="/") Home
       li.navbar-item
         a(href="/ads") Ads List
-      li.navbar-item
-        a(href="/register") Sign-Up
-      li.navbar-item
-        a(href="/login") Login
+      if !user
+        li.navbar-item
+          a(href="/register") Sign-Up
+      if !user
+        li.navbar-item
+          a(href="/login") Login
+      if user
+        li.navbar-item
+          a(href="/logout") Logout
+      if user
+        li.navbar-item
+          a#headerUsername= user.username

@@ -3,8 +3,18 @@ var router = express.Router();
 
 const Ad = require('../models/ad');
 
+const passport = require('passport');
+
+//Authentication Function
+function isLoggedIn(req, res, next) {
+    if (req.isAuthenticated()) {
+        return next();
+    }
+    res.redirect('/login');
+}
+
 /* GET List Page */
-router.get('/', function (req, res, next) {
+router.get('/', isLoggedIn, function (req, res, next) {
 
     Ad.find((err, ads) => {
         if (err) {
@@ -14,6 +24,7 @@ router.get('/', function (req, res, next) {
         else {
             res.render('ads/index', {
                 ads: ads,
+                user: req.user
             });
         }
     })
@@ -21,12 +32,12 @@ router.get('/', function (req, res, next) {
 });
 
 /* GET Ad Creation Page */
-router.get('/create', function (req, res, next) {
-    res.render('ads/create')
+router.get('/create', isLoggedIn, function (req, res, next) {
+    res.render('ads/create', { user: req.user })
 })
 
 /* Ad Creation Submission */
-router.post('/create', function (req, res, next) {
+router.post('/create', isLoggedIn, function (req, res, next) {
     Ad.create({
         title: req.body.title,
         description: req.body.description,
@@ -44,7 +55,7 @@ router.post('/create', function (req, res, next) {
 })
 
 /* GET Ad Deletion Functionality */
-router.get('/delete/:_id', function (req, res, next) {
+router.get('/delete/:_id', isLoggedIn, function (req, res, next) {
     var _id = req.params._id;
     Ad.remove({ _id: _id }, (err) => {
         if (err) {
@@ -58,7 +69,7 @@ router.get('/delete/:_id', function (req, res, next) {
 })
 
 /* GET Ad Editing Functionality */
-router.get('/edit/:_id', function (req, res, next) {
+router.get('/edit/:_id', isLoggedIn, function (req, res, next) {
     var _id = req.params._id;
     Ad.findById(_id, (err, ads) => {
         if (err) {
@@ -68,13 +79,14 @@ router.get('/edit/:_id', function (req, res, next) {
         else {
             res.render('ads/edit', {
                 ads: ads,
+                user: req.user
             });
         }
     })
 })
 
 /* Ad Editing Submission */
-router.post('/edit/:_id', (req, res, next) => {
+router.post('/edit/:_id', isLoggedIn, (req, res, next) => {
     var _id = req.params._id;
     var ad = new Ad({
         _id: _id,

@@ -2,7 +2,7 @@ extends layout
 
 block content
 
-    h1 Register for an Account
+    h1 Login to Your Account
 
     form.registerForm(method="post")
         fieldset
@@ -12,4 +12,5 @@ block content
             label(for="password") Password:
             input.password(name="password", type="password", required)
         fieldset
+            p.errorMessage= messages
             button.loginButton Login
