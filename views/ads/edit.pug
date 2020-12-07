@@ -1,0 +1,18 @@
+extends ../layout
+
+block content
+
+    h1 Edit Existing Classified Ad
+
+    form.editForm(method="post")
+        fieldset
+            label Title:
+            input.title(name="title", value=ads.title, required)
+        fieldset
+            label Description:
+            input.description(name="description", value=ads.description)
+        fieldset
+            label Price:
+            input.price(name="price", type="number", placeholder="0.00", min="0", value=ads.price, step="0.01", required)
+        input(name="_id", type="hidden", value=ads._id)
+        button.submitButton Save Changes
