@@ -1,0 +1,17 @@
+extends ../layout
+
+block content
+
+    h1 Create Classified Ad
+
+    form.createForm(method="post")
+        fieldset
+            label Title:
+            input.title(name="title", required)
+        fieldset
+            label Description:
+            input.description(name="description")
+        fieldset
+            label Price:
+            input.price(name="price", type="number", placeholder="0.00", min="0", value="0", step="0.01", required)
+        button.submitButton Submit

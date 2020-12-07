@@ -20,4 +20,27 @@ router.get('/', function (req, res, next) {
 
 });
 
+/* GET Ad Creation Page */
+router.get('/create', function (req, res, next) {
+    res.render('ads/create')
+})
+
+/* Ad Creation Submission */
+router.post('/create', function (req, res, next) {
+    Ad.create({
+        title: req.body.title,
+        description: req.body.description,
+        price: req.body.price
+    }, (err, ad) => {
+        if (err) {
+            console.log(err);
+            res.end(err);
+        }
+        else {
+            res.redirect('/ads')
+        }
+    }
+    )
+}) 
+
 module.exports = router;
