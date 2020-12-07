@@ -1,3 +1,6 @@
+//Mark Sporich, Student #200399323
+//Website: Classified Ads
+
 const mongoose = require('mongoose');
 
 const adSchema = new mongoose.Schema(

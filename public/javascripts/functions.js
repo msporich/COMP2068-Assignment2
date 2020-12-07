@@ -1,3 +1,6 @@
+//Mark Sporich, Student #200399323
+//Website: Classified Ads
+
 //Javascript Functions for Pug Pages
 
 $('.confirmDelete').on('click', function () {
