@@ -4,13 +4,16 @@ block content
 
     h1 Login to Your Account
 
-    form.registerForm(method="post")
+    form.authenticationForm(method="post")
         fieldset
-            label(for="username") Username:
+            label.usernameLabel(for="username") Username:
             input.username(name="username", required)
         fieldset
-            label(for="password") Password:
+            label.passwordLabel(for="password") Password:
             input.password(name="password", type="password", required)
         fieldset
-            p.errorMessage= messages
+            if messages == 'Login invalid. Please try again.'
+                p.errorMessage= messages
+            else
+                p Click "Login" to continue.
             button.loginButton Login

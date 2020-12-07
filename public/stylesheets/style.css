@@ -99,6 +99,29 @@ p {
     background: #c8b3a9;
 }
 
+/**************************/
+/* Registration and Login */
+/*        Styling         */
+/**************************/
+
+.authenticationForm {
+    width: 100%;
+}
+
+fieldset {
+    border: none;
+}
+
+.username {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.password {
+    width: 100%;
+    box-sizing: border-box;
+}
+
 /********************/
 /* Ads List Styling */
 /********************/
@@ -109,7 +132,25 @@ p {
     border-color: #c65825;
     margin-left: 1%;
     margin-right: 1%;
+    padding: 0;
     border-width: thin;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-bottom: 25px;
+}
+
+.adsList > li {
+    list-style-type: none;
+    padding-right: 20px;
+    padding-left: 20px;
+    border-right: solid;
+    border-right-width: thin;
+    border-right-color: #c65825;
+}
+
+.title {
+    font-weight: bold;
 }
 
 /******************/

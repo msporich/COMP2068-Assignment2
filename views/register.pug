@@ -4,12 +4,12 @@ block content
 
     h1 Register for an Account
 
-    form.registerForm(method="post")
+    form.authenticationForm(method="post")
         fieldset
-            label(for="username") Username:
+            label.usernameLabel(for="username") Username:
             input.username(name="username", required)
         fieldset
-            label(for="password") Password:
+            label.passwordLabel(for="password") Password:
             input.password(name="password", type="password", pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required)
         fieldset
             button.registerButton Register
