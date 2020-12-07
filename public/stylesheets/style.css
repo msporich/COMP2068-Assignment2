@@ -22,7 +22,8 @@ body {
 
 h1 {
     padding: 20px;
-    border-bottom-style: dashed;
+    border-bottom-style: solid;
+    border-bottom-width: thin;
 }
 
 a {
@@ -122,6 +123,22 @@ fieldset {
     box-sizing: border-box;
 }
 
+/*********************************/
+/* Ad Creation / Editing Styling */
+/*********************************/
+
+.createForm {
+    width: 100%;
+}
+
+.editForm {
+    width: 100%;
+}
+
+.createForm > fieldset {
+    border: none;
+}
+
 /********************/
 /* Ads List Styling */
 /********************/
@@ -161,5 +178,6 @@ footer {
     text-align: center;
     padding: 20px;
     font-style: italic;
-    border-top-style: dashed;
+    border-top-style: solid;
+    border-top-width: thin;
 }
