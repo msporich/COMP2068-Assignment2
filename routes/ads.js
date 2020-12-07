@@ -41,6 +41,20 @@ router.post('/create', function (req, res, next) {
         }
     }
     )
-}) 
+})
+
+/* GET Ad Deletion Page */
+router.get('/delete/:_id', function (req, res, next) {
+    var _id = req.params._id;
+    Ad.remove({ _id: _id }, (err) => {
+        if (err) {
+            console.log(err);
+            res.end(err);
+        }
+        else {
+            res.redirect('/ads')
+        }
+    })
+})
 
 module.exports = router;
