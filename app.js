@@ -8,6 +8,11 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var adsRouter = require('./routes/ads');
 
+//References for Authentication
+const passport = require('passport');
+const session = require('express-session');
+const localStrategy = require('passport-local').Strategy;
+
 var app = express();
 
 //Connection to Database
@@ -17,13 +22,28 @@ mongoose.connect('mongodb+srv://mark-sporich:ThisIsPasscode@ClusterClassifiedAds
         useNewUrlParser: true,
         useUnifiedTopology: true
     }).then(
-        (res) =>
-        {
+        (res) => {
             console.log('Connection to MongoDB')
-        }).catch(() =>
-        {
+        }).catch(() => {
             console.log('Connection Error!')
         })
+
+
+//Passport Initialization
+app.use(session({
+    secret: 'ClassifiedAdsSite',
+    resave: true,
+    saveUninitialized: false
+}))
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+const User = require('./models/user');
+passport.use(User.createStrategy());
+
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -40,19 +60,19 @@ app.use('/users', usersRouter);
 app.use('/ads', adsRouter);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  next(createError(404));
+app.use(function (req, res, next) {
+    next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+app.use(function (err, req, res, next) {
+    // set locals, only providing error in development
+    res.locals.message = err.message;
+    res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
+    // render the error page
+    res.status(err.status || 500);
+    res.render('error');
 });
 
 module.exports = app;

@@ -11,6 +11,11 @@ router.get('/register', function (req, res, next) {
     res.render('register');
 });
 
+/* POST Registration */
+router.post('/register', function (req, res, next) {
+    
+})
+
 /* GET Login Page */
 router.get('/login', function (req, res, next) {
     res.render('login');
